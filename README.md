@@ -2,10 +2,10 @@
 
 https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.listview.insertionmark?view=netframework-4.8.1
 
-Examples
+** Examples
 The following code example demonstrates how to use the ListView insertion mark feature. This example implements drag-and-drop item reordering using the standard drag events. The position of the insertion mark is updated in a handler for the Control.DragOver event. In this handler, the position of the mouse pointer is compared to the midpoint of the nearest item, and the result is used to determine whether the insertion mark appears to the left or the right of the item.
 
-C#
+** C#
 
 
 using System;
@@ -153,12 +153,15 @@ public class ListViewInsertionMarkExample : Form
         }
     }
 }
-Remarks
+
+
+
+** Remarks
 The ListView insertion mark feature lets you visually indicate the expected drop location in a drag-and-drop operation when an item is dragged to a new position. This feature works only when the AutoArrange property is set to true and when the ListView control does not sort the items automatically. To prevent automatic sorting, the Sorting property must be set to SortOrder.None and the View property must be set to View.LargeIcon, View.SmallIcon, or View.Tile. Additionally, the insertion mark feature may not be visible with the ListView grouping feature because the grouping feature orders the items by group membership.
 
 The ListViewInsertionMark class is typically used in a handler for the Control.DragOver or Control.MouseMove event to update the position of the insertion mark as an item is dragged. It is also used in a handler for the Control.DragDrop or Control.MouseUp event to insert a dragged item at the correct location. For more information, see ListViewInsertionMark and How to: Display an Insertion Mark in a Windows Forms ListView Control.
 
- Note
+** Note
 
 The insertion mark feature is available only on Windows XP and Windows Server 2003 when your application calls the Application.EnableVisualStyles method. On earlier operating systems, any code relating to the insertion mark has no effect and the insertion mark will not appear. As a result, any code that depends on the insertion mark feature might not work correctly. You might want to include code that determines whether this feature is available, and provide alternate functionality when it is unavailable. For example, you might want to bypass all code that implements drag-and-drop item repositioning when running on operating systems that do not support insertion marks.
 
