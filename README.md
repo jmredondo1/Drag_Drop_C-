@@ -1,13 +1,12 @@
-# Drag_Drop_C-
+### Drag_Drop_C-
 
 https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.listview.insertionmark?view=netframework-4.8.1
 
-** Examples
-The following code example demonstrates how to use the ListView insertion mark feature. This example implements drag-and-drop item reordering using the standard drag events. The position of the insertion mark is updated in a handler for the Control.DragOver event. In this handler, the position of the mouse pointer is compared to the midpoint of the nearest item, and the result is used to determine whether the insertion mark appears to the left or the right of the item.
+## Ejemplo de Drag Drop en C#
+En el ejemplo de código siguiente se muestra cómo utilizar la característica de marca de inserción ListView. En este ejemplo se implementa la reordenación de elementos de arrastrar y colocar mediante los eventos de arrastre estándar. La posición de la marca de inserción se actualiza en un controlador para el evento Control.DragOver. En este controlador, la posición del puntero del mouse se compara con el punto medio del elemento más cercano y el resultado se usa para determinar si la marca de inserción aparece a la izquierda o a la derecha del elemento.
+** C# **
 
-** C#
-
-
+```
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -153,16 +152,16 @@ public class ListViewInsertionMarkExample : Form
         }
     }
 }
+```
 
 
+# Notas
+La característica de marca de inserción ListView permite indicar visualmente la ubicación de colocación esperada en una operación de arrastrar y colocar cuando se arrastra un elemento a una nueva posición. Esta característica sólo funciona cuando la propiedad AutoArrange se establece en true y cuando el control ListView no ordena los elementos automáticamente. Para evitar la ordenación automática, la propiedad Sorting debe establecerse en SortOrder.None y la propiedad View debe establecerse en View.LargeIcon, View.SmallIcon o View.Tile. Además, es posible que la característica de marca de inserción no esté visible con la característica de agrupación ListView porque la característica de agrupación ordena los elementos por pertenencia a grupos.
 
-** Remarks
-The ListView insertion mark feature lets you visually indicate the expected drop location in a drag-and-drop operation when an item is dragged to a new position. This feature works only when the AutoArrange property is set to true and when the ListView control does not sort the items automatically. To prevent automatic sorting, the Sorting property must be set to SortOrder.None and the View property must be set to View.LargeIcon, View.SmallIcon, or View.Tile. Additionally, the insertion mark feature may not be visible with the ListView grouping feature because the grouping feature orders the items by group membership.
+La clase ListViewInsertionMark se usa normalmente en un controlador para el evento Control.DragOver o Control.MouseMove para actualizar la posición de la marca de inserción a medida que se arrastra un elemento. También se usa en un controlador para el evento Control.DragDrop o Control.MouseUp para insertar un elemento arrastrado en la ubicación correcta. Para obtener más información, vea ListViewInsertionMark y Cómo: Mostrar una marca de inserción en un control ListView de formularios Windows Forms.
 
-The ListViewInsertionMark class is typically used in a handler for the Control.DragOver or Control.MouseMove event to update the position of the insertion mark as an item is dragged. It is also used in a handler for the Control.DragDrop or Control.MouseUp event to insert a dragged item at the correct location. For more information, see ListViewInsertionMark and How to: Display an Insertion Mark in a Windows Forms ListView Control.
+# Nota
 
-** Note
+La característica de marca de inserción sólo está disponible en Windows XP y Windows Server 2003 cuando la aplicación llama al método Application.EnableVisualStyles. En sistemas operativos anteriores, cualquier código relacionado con la marca de inserción no tiene efecto y la marca de inserción no aparecerá. Como resultado, es posible que cualquier código que dependa de la característica de marca de inserción no funcione correctamente. Es posible que desee incluir código que determine si esta característica está disponible y proporcionar funcionalidad alternativa cuando no esté disponible. Por ejemplo, es posible que desee omitir todo el código que implementa el reposicionamiento de elementos de arrastrar y colocar cuando se ejecuta en sistemas operativos que no admiten marcas de inserción.
 
-The insertion mark feature is available only on Windows XP and Windows Server 2003 when your application calls the Application.EnableVisualStyles method. On earlier operating systems, any code relating to the insertion mark has no effect and the insertion mark will not appear. As a result, any code that depends on the insertion mark feature might not work correctly. You might want to include code that determines whether this feature is available, and provide alternate functionality when it is unavailable. For example, you might want to bypass all code that implements drag-and-drop item repositioning when running on operating systems that do not support insertion marks.
-
-The insertion mark feature is provided by the same library that provides the operating system themes feature. To check for the availability of this library, call the FeatureSupport.IsPresent(Object) method overload and pass in the OSFeature.Themes value.
+La característica de marca de inserción es proporcionada por la misma biblioteca que proporciona la característica de temas del sistema operativo. Para comprobar la disponibilidad de esta biblioteca, llame a la sobrecarga del método FeatureSupport.IsPresent(Object) y pase el valor OSFeature.Themes.
