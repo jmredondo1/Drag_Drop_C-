@@ -7,7 +7,6 @@ En el ejemplo de código siguiente se muestra cómo utilizar la característica 
 ** C# **
 
 using System.Security.Cryptography.X509Certificates;
-
 namespace WinFormsApp1
 {
     public partial class Form1 : Form
