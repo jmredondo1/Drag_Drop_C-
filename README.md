@@ -2,7 +2,7 @@
 
 https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.listview.insertionmark?view=netframework-4.8.1
 
-## Ejemplo de Drag Drop, Certificados y firmacon Autofirma en C# 
+## Ejemplo de Drag Drop, Certificados y firma con Autofirma en C# 
 En el ejemplo de código siguiente se muestra cómo utilizar la característica de marca de inserción ListView. En este ejemplo se implementa la reordenación de elementos de arrastrar y colocar mediante los eventos de arrastre estándar. La posición de la marca de inserción se actualiza en un controlador para el evento Control.DragOver. En este controlador, la posición del puntero del mouse se compara con el punto medio del elemento más cercano y el resultado se usa para determinar si la marca de inserción aparece a la izquierda o a la derecha del elemento.
 ** C# **
 
