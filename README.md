@@ -15,7 +15,7 @@ namespace WinFormsApp1
         {
             InitializeComponent();
 
-            // Initialize myListView.
+            // Inicializar ListView
             //listView1.View = View.Details;
             //listView1.MultiSelect = false;
             //listView1.FullRowSelect = true;
@@ -26,10 +26,10 @@ namespace WinFormsApp1
 
             listView1.ListViewItemSorter = new ListViewIndexComparer();
 
-            // Initialize the insertion mark.
+            // Inicializar la insertion mark.
             listView1.InsertionMark.Color = Color.Black;
 
-            // Add items to myListView.
+            // Añadir Items a LlistView
             //listView1.Items.Add("zero");
             //listView1.Items.Add("one");
             //listView1.Items.Add("two");
@@ -37,8 +37,7 @@ namespace WinFormsApp1
             //listView1.Items.Add("four");
             //listView1.Items.Add("five");
 
-            // Initialize the drag-and-drop operation when running
-            // under Windows XP or a later operating system.
+            // Inicializar drag-and-drop en Windows XP o superior
             if (OSFeature.Feature.IsPresent(OSFeature.Themes))
             {
                 listView1.AllowDrop = true;
@@ -48,40 +47,36 @@ namespace WinFormsApp1
                 listView1.DragLeave += new EventHandler(listView1_DragLeave);
                 listView1.DragDrop += new DragEventHandler(listView1_DragDrop);
             }
-
-
-
         }
 
         private void listView1_DragDrop(object? sender, DragEventArgs e)
         {
-            // Retrieve the index of the insertion mark;
+            // Recuperar el índice de la insertion mark;
             int targetIndex = listView1.InsertionMark.Index;
 
-            // If the insertion mark is not visible, exit the method.
+            // Si la insertion mark no es visible, salir.
             if (targetIndex == -1)
             {
                 return;
             }
 
-            // If the insertion mark is to the right of the item with
-            // the corresponding index, increment the target index.
+            // Si la insertion mark está en el item correspondiente, incrementa el target index.
             if (listView1.InsertionMark.AppearsAfterItem)
             {
                 targetIndex++;
             }
 
-            // Retrieve the dragged item.
+            // Recuperar el item arrastrado
             ListViewItem draggedItem =
                 (ListViewItem)e.Data.GetData(typeof(ListViewItem));
 
-            // Insert a copy of the dragged item at the target index.
-            // A copy must be inserted before the original item is removed
+            // Inserta una copia del item arrastrado al target index.
+            // La copia debe ser insertada antes de que el item original sea borrado
             // to preserve item index values. 
             listView1.Items.Insert(
                 targetIndex, (ListViewItem)draggedItem.Clone());
 
-            // Remove the original copy of the dragged item.
+            // Elimina la copia original del elemento arrastrado.
             listView1.Items.Remove(draggedItem);
         }
 
@@ -92,18 +87,20 @@ namespace WinFormsApp1
 
         private void listView1_DragOver(object? sender, DragEventArgs e)
         {
-            // Retrieve the client coordinates of the mouse pointer.
+            // Recupere las coordenadas del cliente del puntero del mouse
             Point targetPoint = listView1.PointToClient(new Point(e.X, e.Y));
 
-            // Retrieve the index of the item closest to the mouse pointer.
+            // Recupera el índice del elemento más cercano al puntero del mouse.
             int targetIndex = listView1.InsertionMark.NearestIndex(targetPoint);
 
-            // Confirm that the mouse pointer is not over the dragged item.
+            // Confirma que el puntero del mouse no esté sobre el elemento arrastrado.
             if (targetIndex > -1)
             {
-                // Determine whether the mouse pointer is to the left or
-                // the right of the midpoint of the closest item and set
-                // the InsertionMark.AppearsAfterItem property accordingly.
+
+                // Determinar si el puntero del mouse está hacia la izquierda o hacia la 
+                // la derecha del punto medio del elemento y conjunto más cercano
+                // la propiedad InsertionMark.AppearsAfterItem en consecuencia.
+
                 Rectangle itemBounds = listView1.GetItemRect(targetIndex);
                 if (targetPoint.X > itemBounds.Left + (itemBounds.Width / 2))
                 {
@@ -115,9 +112,9 @@ namespace WinFormsApp1
                 }
             }
 
-            // Set the location of the insertion mark. If the mouse is
-            // over the dragged item, the targetIndex value is -1 and
-            // the insertion mark disappears.
+            // Establece la ubicación de la marca de inserción. Si el ratón está
+            // sobre el elemento arrastrado, el valor targetIndex es -1 y
+            // la marca de inserción desaparece.
             listView1.InsertionMark.Index = targetIndex;
         }
 
